@@ -1,0 +1,25 @@
+Option Explicit
+
+
+Private Sub Workbook_Open()
+
+    Call SaveBackup        
+
+End Sub
+
+
+Sub SaveBackup()
+    
+    Dim newFileName, savePath, backupName, msg
+    
+    newFileName = Split(ThisWorkbook.Name(), ".")(0)
+    savePath = "ENTER YOUR PATH"
+    backupName = savePath & newFileName & "_Backup_" & Format(Now(), "yyyy-mm-dd_hhmm") & ".xlsm"
+    
+    ThisWorkbook.SaveCopyAs backupName
+        
+    msg = "A backup copy of this file has been saved at the following address:" & vbNewLine & vbNewLine _
+        & backupName
+    MsgBox msg
+
+End Sub
